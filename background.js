@@ -5,9 +5,10 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+  console.log("Wallet2Pseudo is onPageChanged");
   chrome.declarativeContent.onPageChanged.addRules([{
     conditions: [new chrome.declarativeContent.PageStateMatcher({
-      pageUrl: {hostEquals: 'www.quora.com'},
+      pageUrl: {ports: [80,443]},
     })
     ],
         actions: [new chrome.declarativeContent.ShowPageAction()]
