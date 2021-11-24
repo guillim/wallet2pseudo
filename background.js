@@ -4,11 +4,14 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
+// regex follow re2 standard
 chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-  console.log("Wallet2Pseudo is onPageChanged");
   chrome.declarativeContent.onPageChanged.addRules([{
     conditions: [new chrome.declarativeContent.PageStateMatcher({
-      pageUrl: {ports: [80,443]},
+      pageUrl: {
+        ports: [80,443],
+        urlMatches: '.*bscscan.*|.*dextools.*|.*etherscan.*|.*xdao.*'
+      },
     })
     ],
         actions: [new chrome.declarativeContent.ShowPageAction()]
