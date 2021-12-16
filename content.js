@@ -4,10 +4,13 @@ var w2p = function(){
         if(!data){
             return false;
         }
-        let newHtml = $("body").html();
-
+        if($.fn){
+            $ = jQuery
+        }
+        let newHtml = $("body");
         // removing scripts to avoid double declarations
-        newHtml = newHtml.find('script').remove();
+        // newHtml = newHtml.find('script').remove();
+        newHtml = newHtml.html();
         for (const address in data['w2p']) {
             if (Object.hasOwnProperty.call(data['w2p'], address)) {
                 // regex explanation : regexr.com/6bmei
@@ -37,7 +40,7 @@ var p2w=function(){
 }
 
 var addListeners=function(){
-    w2p();
+    w2p(); 
 }
 
 var removeListeners=function(){
