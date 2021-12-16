@@ -10,7 +10,7 @@ chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     conditions: [new chrome.declarativeContent.PageStateMatcher({
       pageUrl: {
         ports: [80,443],
-        urlMatches: '.*bscscan.*|.*dextools.*|.*etherscan.*|.*xdao.*'
+        urlMatches: '.*bscscan.*|.*dextools.*|.*etherscan.*|.*xdao.*|.*blockchain.*|.*bitquery.*|.*poocoin.*'
       },
     })
     ],
