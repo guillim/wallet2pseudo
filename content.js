@@ -4,12 +4,30 @@ var w2p = function(){
         if(!data){
             return false;
         }
+        let newHtml = $("body").html();
+
+        // removing scripts to avoid double declarations
+        newHtml = newHtml.find('script').remove();
         for (const address in data['w2p']) {
             if (Object.hasOwnProperty.call(data['w2p'], address)) {
-                var re = new RegExp(address, 'gi')
-                $("body").html($("body").html().replace(re,data['w2p'][address]));
+                // regex explanation : regexr.com/6bmei
+                const re = new RegExp('(?<=<\s*(div|span|a|p)[^<]*>[^<>]*)'+address+'(?=[^<>]*<\s*\/(span|a|div|p)\s*>)', 'gi')
+
+                // for websites like xdao that only dipslay first and last digits
+                const re2 = new RegExp('(?<=<\s*(div|span|a|p)[^<]*>[^<>]*)'+address.slice(0,5)+'.*'+address.slice(-3)+'(?=[^<>]*<\s*\/(span|a|div|p)\s*>)', 'gi')
+
+                // for websites like xdao that only dipslay first digits
+                const re3 = new RegExp('(?<=<\s*(div|span|a|p)[^<]*>[^<>]*)'+address.slice(0,10)+'(?=[^<>]*<\s*\/(span|a|div|p)\s*>)', 'gi')
+
+                // for websites like xdao that only dipslay first digits, after the two first ones
+                const re4 = new RegExp('(?<=<\s*(div|span|a|p)[^<]*>[^<>]*)'+address.slice(2,12)+'(?=[^<>]*<\s*\/(span|a|div|p)\s*>)', 'gi')
+
+                const reFinal = new RegExp(re.source + "|" + re2.source + "|" + re3.source + "|" + re4.source, 'gi');
+                // console.log('reFinal',reFinal);
+                newHtml = newHtml.replace(reFinal,data['w2p'][address]);
             }
         };
+        $("body").html(newHtml);        
     });
 }
 
