@@ -3,26 +3,93 @@
   <head>
     <style>
       body{
-        width: 250px;
+        width: 300px;
         text-align: center;
       }
       input {
-        height: 20px;
-        width: 50px;
         outline: none;
       }
       label{
-        width:50px;
         font-weight: bold;
       }
+      .h-26{
+        height: 26px !important;
+      }
+      .w-50{
+        width: 50px;;
+      }
+      .btn-blue {
+        background-color: #2c75ce; /* Green */
+        border: none;
+        color: white;
+        padding: 2px 6px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 2px;
+      }
+      .view{
+        margin-left: 15px;
+      }
+
+      hr{
+        border-top: 3px solid #bbb;
+      }
+
+      .checkbox-container{
+        vertical-align: middle;
+      }
+
+            
+      /* Base style, essential for every key. tks https://github.com/michaelhue/keyscss */
+      kbd, .key {
+        display: inline;
+        display: inline-block;
+        min-width: 1em;
+        padding: .2em .3em;
+        font: normal .85em/1 "Lucida Grande", Lucida, Arial, sans-serif;
+        text-align: center;
+        text-decoration: none;
+        -moz-border-radius: .3em;
+        -webkit-border-radius: .3em;
+        border-radius: .3em;
+        border: none;
+        cursor: default;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      /* kbd[title], .key[title] {
+        cursor: help;
+      } */
+
+      kbd.light, .light-keys kbd, .key.light, .light-keys .key {
+        background: rgb(250, 250, 250);
+        background: -moz-linear-gradient(top, rgb(210, 210, 210), rgb(255, 255, 255));
+        background: -webkit-gradient(linear, left top, left bottom, from(rgb(210, 210, 210)), to(rgb(255, 255, 255)));
+        color:  rgb(50, 50, 50);
+        text-shadow: 0 0 2px rgb(255, 255, 255);
+        -moz-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+        -webkit-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+        box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+      }
+
     </style>
   </head>
   <body>
-    <label>Activate Wallet to Pseudo</label>
-    <input type="checkbox" id="changePseudo" checked></input>
-    <br><br>
-    <input type="text" id="addPseudo" placeholder="pseudo"></input><input type="text" id="addAddress" placeholder="0xf..."></input><button id="w2pclick">add</button>
-    <a id="options">view pseudos</a>
+    <span class="light-keys">
+      Use <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
+    </span>
+    <br>
+    <div class="checkbox-container">
+      <label>Or switch to auto mode (experimental)</label>
+      <input type="checkbox" id="changePseudo" checked></input>
+    </div>
+    <br>
+    <hr></hr>
+    <br>
+    <input type="text" id="addPseudo" placeholder="pseudo" class="h-20 w-50"></input><input type="text" id="addAddress" placeholder="0xf..." class="h-20 w-50"></input><button id="w2pclick" class="h-20">add</button>
+    <a id="options" class="btn-blue view">view pseudos</a>
     <script src="changePseudo.js"></script>
   </body>
 </html>
