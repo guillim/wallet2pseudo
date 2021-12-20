@@ -31,7 +31,7 @@ var w2p = function(){
             }
         };
         $("body").html(newHtml);        
-    });
+    })
 }
 
 
@@ -49,9 +49,11 @@ var removeListeners=function(){
 }
 
 //message listener for background
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)    {
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)    {    
     if(request.command === 'init'){
         addListeners();
+    }else if(request.action === 'w2p_start'){
+        w2p();
     }else{
         removeListeners();
     }

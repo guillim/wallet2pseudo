@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({hide: true}, function() {
-    console.log("Wallet2Pseudo is on");
+  chrome.storage.sync.set({hide: false}, function() {
+    console.log("Wallet2Pseudo is on, use Ctrl+Shift+P to start it up, or switch to auto-mode");
   });
 });
 
@@ -10,7 +10,7 @@ chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     conditions: [new chrome.declarativeContent.PageStateMatcher({
       pageUrl: {
         ports: [80,443],
-        urlMatches: '.*bscscan.*|.*dextools.*|.*etherscan.*|.*xdao.*|.*blockchain.*|.*bitquery.*|.*poocoin.*'
+        urlMatches: '.*bscscan.*|.*dextools.*|.*etherscan.*|.*xdao.*|.*blockchain.*|.*bitquery.*|.*poocoin.*|.*pancakeswap.*|.*apeswap*',
       },
     })
     ],
@@ -18,3 +18,14 @@ chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
   }]);
 });
 
+chrome.commands.onCommand.addListener(function (command) {
+  switch (command) {
+      case 'launch':
+          chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "w2p_start" });
+          });
+          break;
+      default:
+          console.log(`Command ${command} not found`);
+  }
+});
