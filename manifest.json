@@ -18,6 +18,15 @@
         "128": "images/get_started128.png"
       }
     },
+    "commands": {
+      "launch": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+P",
+            "mac": "Command+Shift+P"
+          },
+          "description": "manual trigger the wallet to pseudo conversion"
+      }
+    },
     "content_scripts": [
       {
         "matches": [
@@ -27,9 +36,12 @@
           "*://*.xdao.app/*",
           "*://*.blockchain.com/*",
           "*://*.bitquery.io/*",
+          "*://*.pancakeswap.finance/*",
+          "*://*.apeswap.finance/*",
           "*://*.poocoin.app/*"
         ],
-        "js": ["jquery-3.3.1.js","content.js"]
+        "js": ["jquery-3.3.1.js","content.js"],
+        "run_at": "document_idle"
       }
     ],
     "icons": {
