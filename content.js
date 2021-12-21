@@ -4,13 +4,7 @@ var w2p = function(){
         if(!data){
             return false;
         }
-        if($.fn){
-            $ = jQuery
-        }
-        let newHtml = $("body");
-        // removing scripts to avoid double declarations
-        // newHtml = newHtml.find('script').remove();
-        newHtml = newHtml.html();
+        let newHtml = document.body.innerHTML
         for (const address in data['w2p']) {
             if (Object.hasOwnProperty.call(data['w2p'], address)) {
                 // regex explanation : regexr.com/6bmei
@@ -30,7 +24,7 @@ var w2p = function(){
                 newHtml = newHtml.replace(reFinal,data['w2p'][address]);
             }
         };
-        $("body").html(newHtml);        
+        document.body.innerHTML=newHtml
     })
 }
 
@@ -44,7 +38,6 @@ var addListeners=function(){
 }
 
 var removeListeners=function(){
-    $(window).unbind('scroll');
     p2w();
 }
 
